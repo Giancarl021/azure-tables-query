@@ -1,15 +1,21 @@
 const { TableServiceClient, TableClient, TablesSharedKeyCredential } = require('@azure/data-tables');
 const generateSchema = require('./src/util/schema');
 const createDatabase = require('./src/services/database');
+const createCsvql = require('csvql');
+const fs = require('fs');
 
-module.exports = function (storageAccountName, storageAccountKey) {
+module.exports = function (storageAccountName, storageAccountKey, pathToDatabase) {
     const credential = new TablesSharedKeyCredential(storageAccountName, storageAccountKey);
     const tableClient = new TableServiceClient(
       `https://${storageAccountName}.table.core.windows.net`,
       credential
     );
 
-    async function fetch(pathToDatabase) {
+    async function fetch() {
+        if (fs.existsSync(pathToDatabase) && fs.lstatSync(pathToDatabase).isFile()) {
+            fs.unlinkSync(pathToDatabase);
+        }
+
         const database = createDatabase(pathToDatabase);
         const tables = tableClient.listTables();
         const promises = [];
@@ -34,16 +40,19 @@ module.exports = function (storageAccountName, storageAccountKey) {
             await database.insertTable(table, schema, entities);
         }
 
-        return {
-            select: query => database.query(`select ${query}`)
-        };
+        database.close();
     }
 
-    function connect(pathToDatabase) {
-        const database = createDatabase(pathToDatabase);
-        return {
-            select: query => database.query(`select ${query}`)
-        };
+    async function getClient() {
+        if (!fs.existsSync(pathToDatabase) || !fs.lstatSync(pathToDatabase).isFile()) {
+            throw new Error('Invalid database path');
+        }
+
+        const csvql = await createCsvql([], {
+            from: pathToDatabase
+        });
+
+        return csvql;
     }
 
     function _getTable(tableName) {
@@ -56,6 +65,6 @@ module.exports = function (storageAccountName, storageAccountKey) {
 
     return {
         fetch,
-        connect
+        getClient
     }
 }

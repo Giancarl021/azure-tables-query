@@ -14,18 +14,11 @@ module.exports = function (pathToDataBase = ':memory:') {
 
         const formatRow = createRowFormatter(columns.map(c => c.name));
 
-        
-
         rows.forEach(row => {
             insert.run(
                 formatRow(row)                
             );
         });
-    }
-
-    function query(statement) {
-        const st = database.prepare(statement);
-        return st.all();
     }
 
     function close() {
@@ -34,7 +27,6 @@ module.exports = function (pathToDataBase = ':memory:') {
 
     return {
         insertTable,
-        query,
         close
     }
 }
