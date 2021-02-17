@@ -1,5 +1,6 @@
 const commands = {
     connect: require('./commands/connect'),
+    account: require('./commands/account')
 };
 
 const helper = require('./commands/help');

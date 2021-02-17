@@ -4,8 +4,7 @@ const dotenv = require('dotenv');
 
 module.exports = function () {
     const dirs = [
-        'data/databases',
-        'data/accounts'
+        'data/databases'
     ];
 
 

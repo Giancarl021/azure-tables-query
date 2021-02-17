@@ -1,20 +1,35 @@
 const cp = require('child_process');
+const fs = require('fs');
 const locate = require('../util/locate');
 const createSQLTable = require('../../../index');
+const createCredentialsManager = require('../services/credentials');
+
+const credentials = createCredentialsManager();
 
 module.exports = async function (args, flags) {
-    const [ account ] = args;
+    const [ storageAccountName ] = args;
     const { fetch } = flags;
 
-    if (!account) {
-        throw new Error('Invalid account name');
+    if (!storageAccountName) {
+        throw new Error('Invalid Storage Account name');
     }
 
-    const path = locate('data/' + account);
+    const storageAccountKey = await credentials.get(storageAccountName);
 
-    const tables = createSQLTable(process.env.STORAGE_ACCOUNT, process.env.STORAGE_KEY, path);
+    if (!storageAccountKey) {
+        throw new Error('This Storage Account does not exists on your local environment');
+    }
 
-    if (fetch) {
+    const path = locate('data/databases/' + storageAccountName);
+    const notFetchedYet = !fs.existsSync(path);
+
+    if (notFetchedYet) {
+        console.log('Tables copy does not exists in local environment');
+    }
+
+    const tables = createSQLTable(storageAccountName, storageAccountKey, path);
+
+    if (fetch || notFetchedYet) {
         console.log('Fetching tables...');
         await tables.fetch();
     }
