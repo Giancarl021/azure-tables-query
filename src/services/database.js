@@ -1,7 +1,7 @@
 const createDatabase = require('better-sqlite3');
 const createRowFormatter = require('../util/format-row');
 
-module.exports = function (pathToDataBase = ':memory:') {
+module.exports = function (pathToDataBase) {
     const database = createDatabase(pathToDataBase);
 
     database.pragma('journal_mode = WAL');
@@ -16,7 +16,7 @@ module.exports = function (pathToDataBase = ':memory:') {
 
         rows.forEach(row => {
             insert.run(
-                formatRow(row)                
+                formatRow(row)
             );
         });
     }

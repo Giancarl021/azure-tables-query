@@ -5,6 +5,11 @@ const createCsvql = require('csvql');
 const fs = require('fs');
 
 module.exports = function (storageAccountName, storageAccountKey, pathToDatabase) {
+
+    if (!pathToDatabase) {
+        throw new Error('Invalid path to database');
+    }
+
     const credential = new TablesSharedKeyCredential(storageAccountName, storageAccountKey);
     const tableClient = new TableServiceClient(
       `https://${storageAccountName}.table.core.windows.net`,
