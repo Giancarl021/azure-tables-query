@@ -296,10 +296,10 @@ csv-string@^4.0.1:
   resolved "https://registry.yarnpkg.com/csv-string/-/csv-string-4.0.1.tgz#1fb4a88c869badad056d55247f57336e1e748b00"
   integrity sha512-nCdK+EWDbqLvZ2MmVQhHTmidMEsHbK3ncgTJb4oguNRpkmH5OOr+KkDRB4nqsVrJ7oK0AdO1QEsBp0+z7KBtGQ==
 
-csvql@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/csvql/-/csvql-0.1.3.tgz#00531fb90e3fc09750134777691267c6c0116bbb"
-  integrity sha512-9dIpQ3uU07bGO4jxYsQNRdxPmls1CUMFSfI86gSA0AiIZtfbLm9r1KWMu/OkAFfxN3u9GvSXf1NPr6tIN5r+gA==
+csvql@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/csvql/-/csvql-0.1.4.tgz#fad7ce1957727dcb112d7f2e1c78733b63a264cb"
+  integrity sha512-8FUE8tCHYeRObJNzEzr9AzlzK4HinjqmqIuZkbD3SbgGJVLXaF6TeShskTgPP43bUOIGSyFqtTJdQ9er/ke9Sg==
   dependencies:
     better-sqlite3 "^7.1.1"
     csv-string "^4.0.1"

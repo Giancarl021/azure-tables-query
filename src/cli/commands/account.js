@@ -1,4 +1,3 @@
-const keytar = require('keytar');
 const input = require('../services/input');
 const createCredentialsManager = require('../services/credentials');
 
