@@ -1,3 +1,25 @@
 {
-    
+    "connect": {
+        "description": "Connect to a local mirror of the Azure Tables of a storage Account",
+        "args": [ "<storage account name>" ],
+        "flags": {
+            "fetch": {
+                "description": "Update the local copy of the Azure Tables"
+            }
+        }
+    },
+    "account": {
+        "description": "Manages the credentials for Azure Storage Accounts",
+        "operations": {
+            "set": {
+                "description": "Saves a new Storage Account name and key for future connections",
+                "args": [ "[storage account name]", "[storage account key]" ]
+            },
+            "list": "Lists all saved Storage Account names",
+            "delete": {
+                "args": [ "<storage account name>" ],
+                "description": "Removes a credential for a Storage Account"
+            }
+        }
+    }
 }
