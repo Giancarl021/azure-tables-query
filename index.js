@@ -2,6 +2,7 @@ const { TableServiceClient, TableClient, TablesSharedKeyCredential } = require('
 const generateSchema = require('./src/util/schema');
 const createDatabase = require('./src/services/database');
 const createCsvql = require('csvql');
+const chunk = require('callback-chunk');
 const fs = require('fs');
 
 module.exports = function (storageAccountName, storageAccountKey, pathToDatabase) {
@@ -27,11 +28,11 @@ module.exports = function (storageAccountName, storageAccountKey, pathToDatabase
 
         for await (const { tableName: table } of tables) {      
             promises.push(
-                parseTable(table)
+                () => parseTable(table)
             );
         }
 
-        await Promise.all(promises);
+        await chunk(promises, 5);
 
         async function parseTable(table) {
             const tb = _getTable(table);
