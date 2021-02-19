@@ -38,7 +38,7 @@ module.exports = async function (args, flags) {
 
     const fork = cp.fork(bin, ['--from', path], {
         env: {
-            CSVQL_APP_NAME: 'tb'
+            CSVQL_APP_NAME: 'aztb'
         }
     });
 

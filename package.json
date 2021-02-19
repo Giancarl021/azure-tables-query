@@ -7,7 +7,7 @@
   "author": "Giancarlo Fontela da Luz <gian.f.luz@hotmail.com>",
   "license": "MIT",
   "bin": {
-    "tb": "bin"
+    "aztb": "bin"
   },
   "scripts": {
     "test": "node test.spec.js",
@@ -17,11 +17,16 @@
     "@azure/data-tables": "^1.0.0-beta.4",
     "better-sqlite3": "^7.1.2",
     "callback-chunk": "^0.1.1",
-    "csvql": "^0.1.4",
+    "csvql": "^0.1.5",
     "keytar": "^7.4.0",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
     "dotenv": "^8.2.0"
-  }
+  },
+  "keywords": [
+    "sqlite",
+    "azure tables",
+    "sql"
+  ]
 }
