@@ -42,7 +42,7 @@ module.exports = function (storageAccountName, storageAccountKey, pathToDatabase
 
             for await (const entity of _entities) entities.push(entity);
 
-            const schema = generateSchema(entities[0]);
+            const schema = generateSchema(entities);
             await database.insertTable(table, schema, entities);
         }
 

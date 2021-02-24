@@ -1,4 +1,19 @@
-module.exports = function (entity) {
+module.exports = function (entities) {
+    const set = new Set();
+    const o = {};
+    for (const entity of entities) {
+        Object.keys(entity).forEach(key => set.add(key));
+    }
+
+
+    for (const item of set) {
+        o[item] = entities.find(i => Boolean(i[item]))[item];
+    }
+
+    return generate(o);
+}
+
+function generate(entity) {
     const r = [];
     for (const key in entity) {
         let type;
