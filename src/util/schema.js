@@ -7,7 +7,8 @@ module.exports = function (entities) {
 
 
     for (const item of set) {
-        o[item] = entities.find(i => Boolean(i[item]))[item];
+        const entity = entities.find(i => Boolean(i[item])) || {};
+        o[item] = entity[item];
     }
 
     return generate(o);
