@@ -1,4 +1,4 @@
-const { TableServiceClient, TableClient, TablesSharedKeyCredential } = require('@azure/data-tables');
+const { TableServiceClient, TableClient, AzureNamedKeyCredential } = require('@azure/data-tables');
 const generateSchema = require('./src/util/schema');
 const createDatabase = require('./src/services/database');
 const createCsvql = require('csvql');
@@ -11,7 +11,7 @@ module.exports = function (storageAccountName, storageAccountKey, pathToDatabase
         throw new Error('Invalid path to database');
     }
 
-    const credential = new TablesSharedKeyCredential(storageAccountName, storageAccountKey);
+    const credential = new AzureNamedKeyCredential(storageAccountName, storageAccountKey);
     const tableClient = new TableServiceClient(
       `https://${storageAccountName}.table.core.windows.net`,
       credential
@@ -26,7 +26,7 @@ module.exports = function (storageAccountName, storageAccountKey, pathToDatabase
         const tables = tableClient.listTables();
         const promises = [];
 
-        for await (const { tableName: table } of tables) {      
+        for await (const { name: table } of tables) {
             promises.push(
                 () => parseTable(table)
             );

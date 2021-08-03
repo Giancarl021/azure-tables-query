@@ -14,7 +14,7 @@
     "start": "node bin"
   },
   "dependencies": {
-    "@azure/data-tables": "^1.0.0-beta.4",
+    "@azure/data-tables": "^12.1.0",
     "better-sqlite3": "^7.1.2",
     "callback-chunk": "^0.1.1",
     "csvql": "^0.1.5",
