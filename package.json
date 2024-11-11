@@ -10,19 +10,18 @@
     "aztb": "bin"
   },
   "scripts": {
-    "test": "node test.spec.js",
     "start": "node bin"
   },
   "dependencies": {
-    "@azure/data-tables": "^12.1.0",
-    "better-sqlite3": "^7.1.2",
-    "callback-chunk": "^0.1.1",
-    "csvql": "^0.1.5",
-    "keytar": "^7.4.0",
-    "yargs": "^16.2.0"
+    "@azure/data-tables": "^13.2.2",
+    "better-sqlite3": "^11.5.0",
+    "callback-chunk": "^0.1.2",
+    "csvql": "^0.1.6",
+    "keytar": "^7.9.0",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^16.4.5"
   },
   "keywords": [
     "sqlite",
