@@ -1,6 +1,6 @@
 {
   "name": "azure-tables-query",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Queries SQL into Azure Tables",
   "main": "index.js",
   "repository": "https://github.com/Giancarl021/azure-tables-query.git",
